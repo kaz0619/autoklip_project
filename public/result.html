@@ -34,9 +34,18 @@
   <h1>バズシーン結果</h1>
   <div id="buzz-container"></div>
   <script>
-    fetch('/result')
-      .then(response => response.json())
-      .then(data => {
+    fetch('/extract-buzz', { method: 'POST', credentials: 'include' })
+      .then(response => response.text())
+      .then(text => {
+        // レスポンスが "バズシーン抽出完了！結果JSON: ..." のようになっているため、
+        // "バズシーン抽出完了！結果JSON: "以降をJSONとしてパースする必要があります。
+        const prefix = "バズシーン抽出完了！結果JSON: ";
+        if (!text.startsWith(prefix)) {
+          document.getElementById('buzz-container').innerText = "JSONデータを取得できませんでした。";
+          return;
+        }
+        const jsonStr = text.slice(prefix.length);
+        const data = JSON.parse(jsonStr);
         const container = document.getElementById('buzz-container');
         data.forEach(item => {
           const div = document.createElement('div');
@@ -55,6 +64,7 @@
         });
       });
     </script>
+    
 </div>
 </body>
 </html>
