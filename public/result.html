@@ -34,6 +34,7 @@
   <h1>バズシーン結果</h1>
   <div id="buzz-container"></div>
   <script>
+    console.log(text);
     fetch('/extract-buzz', { method: 'POST', credentials: 'include' })
       .then(response => response.text())
       .then(text => {
