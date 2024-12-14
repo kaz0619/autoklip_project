@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auto Klip</title>
+<style>
+  body {
+    background-color: #333;
+    color: #fff;
+    font-family: sans-serif;
+    margin: 0;
+    padding: 20px;
+  }
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  input[type="text"], input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+  }
+  .upload-section {
+    margin-top: 20px;
+  }
+  button {
+    background: #555;
+    color: #fff;
+    padding: 10px 15px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  button:hover {
+    background: #777;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Auto Klip</h1>
+  <p>動画URLを入力するか、動画ファイルをアップロードしてください:</p>
+  <input type="text" placeholder="動画URLを入力">
+  <div class="upload-section">
+    <input type="file" accept=".mp4,.mov">
+  </div>
+  <button>確認画面へ</button>
+</div>
+</body>
+</html>

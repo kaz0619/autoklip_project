@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>メール確認</title>
+<style>
+  body {
+    background-color: #333;
+    color: #fff;
+    font-family: sans-serif;
+    margin: 0;
+    padding: 20px;
+  }
+  .container {
+    max-width: 300px;
+    margin: 50px auto;
+    text-align: center;
+  }
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    color: #333;
+    border: none;
+    border-radius: 5px;
+  }
+  button {
+    background: #555;
+    color: #fff;
+    padding: 10px 15px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  button:hover {
+    background: #777;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>メール確認</h1>
+  <p>メールに記載された確認コードを入力してください:</p>
+  <form action="/verify" method="POST">
+    <input type="text" name="code" placeholder="確認コード" required>
+    <button type="submit">送信</button>
+  </form>
+</div>
+</body>
+</html>
