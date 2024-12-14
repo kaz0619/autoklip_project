@@ -210,7 +210,7 @@ app.get('/whisper-test', async (req, res) => {
       const refined = response.data.choices[0].message.content;
       res.send('文章校正完了！結果: ' + refined);
     } catch (error) {
-      console.error(error);
+      console.error(error.response ? error.response.data : error.message);
       res.send('文章校正でエラーが発生しました。');
     }
   });
