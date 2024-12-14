@@ -34,12 +34,10 @@
   <h1>バズシーン結果</h1>
   <div id="buzz-container"></div>
   <script>
-    console.log(text);
     fetch('/extract-buzz', { method: 'POST', credentials: 'include' })
       .then(response => response.text())
       .then(text => {
-        // レスポンスが "バズシーン抽出完了！結果JSON: ..." のようになっているため、
-        // "バズシーン抽出完了！結果JSON: "以降をJSONとしてパースする必要があります。
+        console.log(text); // ここでtextが定義される
         const prefix = "バズシーン抽出完了！結果JSON: ";
         if (!text.startsWith(prefix)) {
           document.getElementById('buzz-container').innerText = "JSONデータを取得できませんでした。";
@@ -47,22 +45,11 @@
         }
         const jsonStr = text.slice(prefix.length);
         const data = JSON.parse(jsonStr);
-        const container = document.getElementById('buzz-container');
-        data.forEach(item => {
-          const div = document.createElement('div');
-          div.classList.add('buzz-item');
-          div.innerHTML = `
-            <p><strong>時間:</strong> ${item.start} - ${item.end}</p>
-            <p><strong>文章:</strong> ${item.text}</p>
-            <p><strong>バズスコア:</strong> ${item.buzz_score}</p>
-            <div class="small-stats">
-              <p>興味性:${item.stats.興味性} 共感性:${item.stats.共感性} 独自性:${item.stats.独自性}</p>
-              <p>説得力:${item.stats.説得力} 優しさ:${item.stats.優しさ} ユーモア度:${item.stats.ユーモア度}</p>
-              <p>魅力度:${item.stats.魅力度} 意外性:${item.stats.意外性} 話題性:${item.stats.話題性} 感情:${item.stats.感情}</p>
-            </div>
-          `;
-          container.appendChild(div);
-        });
+        // ここでdataを使ってDOMを更新
+      })
+      .catch(err => {
+        console.error(err);
+        document.getElementById('buzz-container').innerText = "データ取得時にエラーが発生しました。";
       });
     </script>
     
