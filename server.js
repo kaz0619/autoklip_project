@@ -193,7 +193,6 @@ app.get('/whisper-test', async (req, res) => {
       return res.send('ログインが必要です。');
     }
   
-    // 実際には直前の文字起こし結果（transcription）をDBや変数で管理する必要がありますが、ここでは仮の固定テキストを使用します
     const transcription = "これはテスト用の文字起こし結果です。 えー、あのー、えっと、ちょっとノイズがあります。";
   
     try {
@@ -214,6 +213,7 @@ app.get('/whisper-test', async (req, res) => {
       res.send('文章校正でエラーが発生しました。');
     }
   });
+  
   
   app.post('/extract-buzz', async (req, res) => {
     if (!req.session || !req.session.loggedIn) {
